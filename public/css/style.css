@@ -1,0 +1,16 @@
+:root{
+    --fontSizeTitre:24px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.phototheque{
+    font-size:var(--fontSizeTitre);
+    padding: 10px 0px 10px 10px;
+    width:100%;
+    background-color:bisque
+}
