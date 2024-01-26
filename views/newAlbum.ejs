@@ -8,10 +8,16 @@
 
     <div class="nouvelleAlbum">
         <h1>Nouvel album</h1>
-        <form action="/albums/create" methode="POST">
+        <form action="/albums/create" method="POST">
             <label for="">Titre</label>
             <input type="text" name="albumTitle" placeholder="Titre de votre nouvel album" autofocus>
+            
+            <% if(errors.length) { %>
+                <div class="messageErreur"><%= errors[0] %></div>
+            <% } %>
+        
             <button type="submit">Créer</button>
+
         </form>
     </div>
 

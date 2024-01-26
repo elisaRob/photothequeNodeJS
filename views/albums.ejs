@@ -5,5 +5,20 @@
 </head>
 <body>
     <%- include('partials/nav.ejs') %>
+    <div class="container">
+        <h1>Mes albums</h1>
+        <a href="/create">Nouvel album</a>
+
+    </div>
+    <div class="listeAlbum">
+        <ul>
+            <% mesAlbums.forEach((monalbum) => { %>
+                <li>
+                    <a href="/albums/<%=monalbum.id %>"><%= monalbum.title %></a>
+                    <a href="#">Supprimer</a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
 </body>
 </html>
