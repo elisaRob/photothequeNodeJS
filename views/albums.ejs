@@ -15,7 +15,7 @@
             <% mesAlbums.forEach((monalbum) => { %>
                 <li>
                     <a href="/albums/<%=monalbum.id %>"><%= monalbum.title %></a>
-                    <a href="#">Supprimer</a>
+                    <a href="/albums/<%= monalbum.id %>/delete">Supprimer</a>
                 </li>
             <% }) %>
         </ul>

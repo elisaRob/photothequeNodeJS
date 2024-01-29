@@ -17,6 +17,16 @@
                 <button type="submit">Ajouter</button>
             </form>
         </div>
+        <% monAlbumVue.images.forEach((image, index) => { %>
+            <div>
+                <img src="/uploads/<%= monAlbumVue._id %>/<%= image %>" alt="">
+                <div>
+                    <h5>Titre</h5>
+                    <a href="/albums/<%= monAlbumVue._id %>/delete/<%= index %>">Supprimer</a>
+                </div>
+            </div>
+        <% }) %>
+       
      
     </div>
 </body>
