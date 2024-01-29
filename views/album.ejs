@@ -5,9 +5,19 @@
 </head>
 <body>
     <%- include('partials/nav.ejs') %>
-    <div class="containerAlbumUnique">
-        <a href="/albums"> &lt; Retour </a>
-        <%= monAlbumVue.title %>
+    <div>
+        <div class="containerAlbumUnique">
+            <a href="/albums"> &lt; Retour </a>
+            <%= monAlbumVue.title %>
+        </div>
+        <div class="formulaireImage">
+            <h5>Ajouter une image</h5>
+            <form method="POST" action="/albums/<%=monAlbumVue._id %>" enctype="multipart/form-data">
+                <input type="file" name="image">
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+     
     </div>
 </body>
 </html>

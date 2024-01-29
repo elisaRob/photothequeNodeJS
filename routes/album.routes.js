@@ -4,7 +4,9 @@ const albumController = require("../controllers/album.controller")
 
 router.get('/albums',albumController.albums)
 
-router.get('/albums/:id',albumController.album)
+router.get('/albums/:id',albumController.album);
+
+router.post('/albums/:id',albumController.addImageToAlbum)
 
 router.get('/create',albumController.createAlbumForm)
 
