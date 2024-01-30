@@ -1,18 +1,21 @@
 const Album = require('../modeles/Album');
 const path = require('path');
 const fs = require('fs');
+const catchASync = require('../helpers/catchAsync')
 
-const albums = async (req,res)=>{
+const mongoose = require('mongoose');
+const { error } = require('console');
+
+const albums = catchASync(async (req,res)=>{
     const albums = await Album.find();
     // console.log(albums)
     res.render('albums',{
         mesAlbums : albums,
     })
-}
+})
 
-const mongoose = require('mongoose');
 
-const album = async (req, res) => {
+const album = catchASync(async (req, res) => {
     const idAlbum=req.params.id;
     const monAlbum = await Album.findById(idAlbum);
     
@@ -22,9 +25,9 @@ const album = async (req, res) => {
         monAlbumVue : monAlbum,
         errors : req.flash('error','Aucun fichier mis en ligne')
     })
-};
+});
 
-const addImageToAlbum= async(req,res) =>{
+const addImageToAlbum= catchASync(async(req,res) =>{
     const idAlbum = req.params.id;
     const album = await Album.findById(idAlbum);
 
@@ -57,16 +60,16 @@ const addImageToAlbum= async(req,res) =>{
     await album.save();
 
     res.redirect(`/albums/${idAlbum}`)
-}
+})
 
 
-const createAlbumForm = (req,res) => {
+const createAlbumForm = catchASync((req,res) => {
         res.render('newAlbum',{
             errors:req.flash('error')
         })
-}
+})
 
-const createAlbum = async (req,res) => {
+const createAlbum = catchASync(async (req,res) => {
 
     try{
         const retour = await Album.create({
@@ -82,9 +85,9 @@ const createAlbum = async (req,res) => {
         res.redirect('/create')
     }
  
-}
+})
 
-const deleteImage = async (req,res) => {
+const deleteImage =catchASync( async (req,res) => {
     const recuperationId = req.params.id;
     const recuperationAupresDeLaBaseDeDonnee = await Album.findById(recuperationId);
 
@@ -100,9 +103,9 @@ const deleteImage = async (req,res) => {
     fs.unlinkSync(imagePath);
 
     res.redirect(`/albums/${recuperationId}`)
-}
+})
 
-const deleteAlbum = async (req, res) => {
+const deleteAlbum = catchASync(async (req, res) => {
     const recuperationId = req.params.id;
     await Album.findByIdAndDelete(recuperationId);
 
@@ -116,7 +119,7 @@ const deleteAlbum = async (req, res) => {
     }
 
     res.redirect(`/albums`);
-}
+})
 
 
 module.exports = {

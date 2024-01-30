@@ -35,6 +35,14 @@ app.use((req,res)=>{
     res.send("Page non trouvée");
 })
 
+//Cette signature de fonction avec le erre du début va nous permettre de récupérer une evntuelle erreur qui nou
+//aurait été transmises à l'aide de next.
+app.use((err, req, res, next) =>{
+    console.log(err);
+    res.status(500);
+    res.send('Erreur interne du serveur')
+})
+
 app.listen(3024,()=>{
     console.log(`on écoute`)
 })
